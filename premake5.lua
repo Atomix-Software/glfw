@@ -26,7 +26,7 @@ project "glfw"
     }
 
     filter "system:linux"
-		pic "On"
+		pic "on"
 		systemversion "latest"
 		
 		files
@@ -50,7 +50,7 @@ project "glfw"
 		}
 
 	filter "system:macosx"
-		pic "On"
+		pic "on"
 
 		files
 		{
@@ -110,4 +110,3 @@ project "glfw"
 	filter "configurations:Distribution"
 		runtime "Release"
 		optimize "on"
-        symbols "off"
