@@ -48,7 +48,7 @@ endif()
 
 if (GLFW_BUILD_X11)
     target_compile_definitions(glfw PRIVATE _GLFW_X11)
-    target_sources(glfw PRIVATE x11_platform.h xkb_unicode.h x11_init.c
+    target_sources(glfw PRIVATE x11_platform.h x11_init.c
                                 x11_monitor.c x11_window.c xkb_unicode.c
                                 glx_context.c)
 endif()
