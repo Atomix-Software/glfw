@@ -10,7 +10,7 @@ add_library(glfw ${GLFW_LIBRARY_TYPE}
 # The time, thread and module code is shared between all backends on a given OS,
 # including the null backend, which still needs those bits to be functional
 if (APPLE)
-    target_sources(glfw PRIVATE cocoa_time.h cocoa_time.c posix_thread.h
+    target_sources(glfw PRIVATE macos_time.h macos_time.c posix_thread.h
                                 posix_module.c posix_thread.c)
 elseif (WIN32)
     target_sources(glfw PRIVATE win32_time.h win32_thread.h win32_module.c
