@@ -291,8 +291,6 @@ void _glfwRestoreVideoModeCocoa(_GLFWmonitor* monitor);
 
 float _glfwTransformYCocoa(float y);
 
-void* _glfwLoadLocalVulkanLoaderCocoa(void);
-
 GLFWbool _glfwInitNSGL(void);
 void _glfwTerminateNSGL(void);
 GLFWbool _glfwCreateContextNSGL(_GLFWwindow* window,

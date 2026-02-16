@@ -57,11 +57,10 @@ GLFWbool _glfwInitVulkan(int mode)
         _glfw.vk.handle = _glfwPlatformLoadModule(_GLFW_VULKAN_LIBRARY);
 #elif defined(_WIN32)
         _glfw.vk.handle = _glfwPlatformLoadModule("vulkan-1.dll");
-#elif defined(_GLFW_COCOA)
+#elif defined(__APPLE__)
         _glfw.vk.handle = _glfwPlatformLoadModule("libvulkan.1.dylib");
         if (!_glfw.vk.handle)
-            _glfw.vk.handle = _glfwLoadLocalVulkanLoaderCocoa();
-#elif defined(__APPLE__)
+            _glfw.vk.handle = _glfwLoadLocalVulkanLoaderMacOS();
 #elif defined(__OpenBSD__) || defined(__NetBSD__)
         _glfw.vk.handle = _glfwPlatformLoadModule("libvulkan.so");
 #else

@@ -33,6 +33,7 @@
     defined(GLFW_BUILD_POSIX_MODULE) || \
     defined(GLFW_BUILD_POSIX_THREAD) || \
     defined(GLFW_BUILD_POSIX_POLL) || \
+    defined(GLFW_BUILD_MACOS_VULKAN) || \
     defined(GLFW_BUILD_LINUX_JOYSTICK)
  #error "You must not define these; define zero or more _GLFW_<platform> macros instead"
 #endif
@@ -208,5 +209,10 @@
 
 #if defined(_GLFW_WAYLAND) || defined(_GLFW_X11)
  #define GLFW_BUILD_POSIX_POLL
+#endif
+
+#if defined(__APPLE__)
+ #include "macos_vulkan.h"
+ #define GLFW_BUILD_MACOS_VULKAN
 #endif
 

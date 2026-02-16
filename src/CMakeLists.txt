@@ -9,9 +9,11 @@ add_library(glfw ${GLFW_LIBRARY_TYPE}
 
 # The time, thread and module code is shared between all backends on a given OS,
 # including the null backend, which still needs those bits to be functional
+# macOS also needs a Vulkan loader helper since it may not be a system file
 if (APPLE)
-    target_sources(glfw PRIVATE macos_time.h macos_time.c posix_thread.h
-                                posix_module.c posix_thread.c)
+    target_sources(glfw PRIVATE macos_time.h macos_vulkan.h macos_time.c
+                                macos_vulkan.c posix_thread.h posix_module.c
+                                posix_thread.c)
 elseif (WIN32)
     target_sources(glfw PRIVATE win32_time.h win32_thread.h win32_module.c
                                 win32_time.c win32_thread.c)
@@ -145,12 +147,10 @@ endif()
 if (GLFW_BUILD_COCOA)
     target_link_libraries(glfw PRIVATE "-framework Cocoa"
                                        "-framework IOKit"
-                                       "-framework CoreFoundation"
                                        "-framework QuartzCore")
 
     list(APPEND glfw_PKG_LIBS "-framework Cocoa"
                               "-framework IOKit"
-                              "-framework CoreFoundation"
                               "-framework QuartzCore")
 endif()
 
@@ -234,6 +234,11 @@ if (UNIX AND NOT APPLE)
         target_link_libraries(glfw PRIVATE "${CMAKE_DL_LIBS}")
         list(APPEND glfw_PKG_LIBS "-l${CMAKE_DL_LIBS}")
     endif()
+endif()
+
+if (APPLE)
+    target_link_libraries(glfw PRIVATE "-framework CoreFoundation")
+    list(APPEND glfw_PKG_LIBS "-framework CoreFoundation")
 endif()
 
 if (WIN32)
