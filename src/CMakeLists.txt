@@ -148,8 +148,10 @@ if (GLFW_BUILD_COCOA)
                                        "-framework CoreFoundation"
                                        "-framework QuartzCore")
 
-    set(glfw_PKG_DEPS "")
-    set(glfw_PKG_LIBS "-framework Cocoa -framework IOKit -framework CoreFoundation -framework QuartzCore")
+    list(APPEND glfw_PKG_LIBS "-framework Cocoa"
+                              "-framework IOKit"
+                              "-framework CoreFoundation"
+                              "-framework QuartzCore")
 endif()
 
 if (GLFW_BUILD_WAYLAND)
